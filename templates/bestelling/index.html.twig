@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BestellingController!{% endblock %}
+
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    {% block body %}
+    <p>Klant: {{ Klant.getNaam }}</p>
+
+    {% for bestelling in bestellingen %}
+        <p>bestelling {{ bestelling.getDatum|datum("d-m-y") }}</p>
+        <ul>
+            {% for bestelRegel in bestelling.getBestelRegels %}
+                <li>Pizza: {{ bestelRegel.getPizza.getNaam }} aantal: {{ bestelRegel.getAantal }}</li>
+            {% endfor %}
+        </ul>
+
+    {% endfor %}
+</div>
+{% endblock %}
